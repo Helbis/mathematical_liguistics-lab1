@@ -69,4 +69,4 @@ Possible states symbols:
 | Q_execute_basic |
 | Q_execute_basic_wax |
 | Q_change |
-| Q_qui |
+| Q_quit |

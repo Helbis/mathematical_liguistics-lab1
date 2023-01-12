@@ -1,9 +1,10 @@
-\documentclass[10pt]{article}
+\documentclass[10pt, a4paper]{article}
 
 % Packages
 \usepackage{lscape}
 \usepackage{longtable}
-\usepackage[table,xcdraw]{xcolor}
+\usepackage{amsmath}
+%\usepackage[table,xcdraw]{xcolor}
 
 % Meta data
 \title{DFA car wash automaton}
@@ -14,6 +15,67 @@
 
 \maketitle{}
 \newpage
+
+\begin{section}{State Machine Definition}
+State machine is defined with following:
+
+Accepted letters of the 'alphabet'
+$$
+\Sigma = \lbrace ONE, TWO, FIVE, EX\_BASIC, EX\_WAX, GET\_CHANGE, NONE \rbrace
+$$
+
+Accepted states of the machine:
+\begin{flalign*}
+Q = \lbrace
+	& Q0, Q1, Q2, Q3,\\
+	& Q4, Q5, Q6, Q7,\\
+	& Q8, Q9, Q10, Q11,\\
+	& Q12, Q13, Q14, Q15,\\
+	& Q16, Q17, Q18, Q19,\\
+	& Q20, Q\_ret\_1\_b\_20, Q\_ret\_2\_b\_20, Q\_ret\_3\_b\_20,\\
+	& Q\_ret\_4\_b\_20, Q\_ret\_5\_b\_20,\\
+	& Q\_basic\_ret\_1, Q\_basic\_ret\_2,\\
+	& Q\_basic\_ret\_3, Q\_basic\_ret\_4,\\
+	& Q\_basic\_ret\_5, Q\_return\_1,\\
+	& Q\_return\_2, Q\_return\_3,\\
+	& Q\_return\_4, Q\_return\_5,\\
+	& Q\_return\_6, Q\_return\_7,\\
+	& Q\_return\_8, Q\_return\_9,\\
+	& Q\_return\_10, Q\_return\_11,\\
+	& Q\_return\_12, Q\_return\_13,\\
+	& Q\_return\_14, Q\_return\_15,\\
+	& Q\_return\_16, Q\_return\_17,\\
+	& Q\_return\_18, Q\_return\_19,\\
+	& Q\_return\_20, Q\_basic,\\
+	& Q\_basic\_wax, Q\_change, Q\_quit
+\rbrace
+\end{flalign*}
+
+Initial state:
+$$
+q_0 = \lbrace Q\_0 \rbrace
+$$
+
+Accepting state:
+$$
+A = \lbrace Q\_quit \rbrace
+$$
+
+\end{section}
+
+\newpage
+
+\begin{section}{State Transition Table}
+This section presents state transition table, which is
+unfortunately too big to show on a single page.
+
+Basing on this table I have created other tables aiding me
+with the production of code.
+I have used string concatenation to poduce real C++ code
+that was later simply copied to main.cpp file.
+
+Basing on this I believe that it is easy to make a script
+that will produce any state machine based on single table of transitions.
 
 \begin{landscape}
 \begin{longtable}[c]{llllllll}
@@ -50,5 +112,74 @@ Q19  & Q20              & Q\_ret\_1\_b\_20 & Q\_ret\_4\_b\_20 & Q\_basic\_ret\_4
 Q20  & Q\_ret\_1\_b\_20 & Q\_ret\_2\_b\_20 & Q\_ret\_5\_b\_20 & Q\_basic\_ret\_5 & Q\_basic\_wax & Q\_return\_20 & Q20  \\ \hline
 \end{longtable}
 \end{landscape}
+
+\newpage
+
+\begin{landscape}
+\begin{longtable}[c]{llllllll}
+\hline
+currentState & ONE & TWO & FIVE & EX\_BASIC & EX\_WAX & GET\_CHANGE & NONE \\ \hline
+\endfirsthead
+%
+\multicolumn{8}{c}%
+{{\bfseries Table \thetable\ continued from previous page}} \\
+\hline
+currentState & ONE & TWO & FIVE & EX\_BASIC & EX\_WAX & GET\_CHANGE & NONE \\ \hline
+\endhead
+%
+Q\_ret\_1\_b\_20 & Q\_ret\_1\_b\_20 & Q\_ret\_2\_b\_20 & Q\_ret\_5\_b\_20 & Q\_basic\_ret\_1 & Q\_basic\_wax & Q\_return\_20 & Q20      \\
+Q\_ret\_2\_b\_20 & Q\_ret\_1\_b\_20 & Q\_ret\_2\_b\_20 & Q\_ret\_5\_b\_20 & Q\_basic\_ret\_2 & Q\_basic\_wax & Q\_return\_20 & Q20      \\
+Q\_ret\_3\_b\_20 & Q\_ret\_1\_b\_20 & Q\_ret\_2\_b\_20 & Q\_ret\_5\_b\_20 & Q\_basic\_ret\_3 & Q\_basic\_wax & Q\_return\_20 & Q20      \\
+Q\_ret\_4\_b\_20 & Q\_ret\_1\_b\_20 & Q\_ret\_2\_b\_20 & Q\_ret\_5\_b\_20 & Q\_basic\_ret\_4 & Q\_basic\_wax & Q\_return\_20 & Q20      \\
+Q\_ret\_5\_b\_20 & Q\_ret\_1\_b\_20 & Q\_ret\_2\_b\_20 & Q\_ret\_5\_b\_20 & Q\_basic\_ret\_5 & Q\_basic\_wax & Q\_return\_20 & Q20      \\
+Q\_basic\_ret\_1 & Q\_basic\_ret\_1 & Q\_basic\_ret\_2 & Q\_basic\_ret\_5 & Q\_basic         & Q15           & Q\_return\_15 & Q\_basic \\
+Q\_basic\_ret\_2 & Q\_basic\_ret\_1 & Q\_basic\_ret\_2 & Q\_basic\_ret\_5 & Q\_basic         & Q15           & Q\_return\_15 & Q\_basic \\
+Q\_basic\_ret\_3 & Q\_basic\_ret\_1 & Q\_basic\_ret\_2 & Q\_basic\_ret\_5 & Q\_basic         & Q15           & Q\_return\_15 & Q\_basic \\
+Q\_basic\_ret\_4 & Q\_basic\_ret\_1 & Q\_basic\_ret\_2 & Q\_basic\_ret\_5 & Q\_basic         & Q15           & Q\_return\_15 & Q\_basic \\
+Q\_basic\_ret\_5 & Q\_basic\_ret\_1 & Q\_basic\_ret\_2 & Q\_basic\_ret\_5 & Q\_basic         & Q15           & Q\_return\_15 & Q\_basic \\
+Q\_return\_1     & Q\_quit          & Q\_quit          & Q\_quit          & Q\_quit          & Q\_quit       & Q\_quit       & Q\_quit  \\
+Q\_return\_2     & Q\_quit          & Q\_quit          & Q\_quit          & Q\_quit          & Q\_quit       & Q\_quit       & Q\_quit  \\
+Q\_return\_3     & Q\_quit          & Q\_quit          & Q\_quit          & Q\_quit          & Q\_quit       & Q\_quit       & Q\_quit  \\
+Q\_return\_4     & Q\_quit          & Q\_quit          & Q\_quit          & Q\_quit          & Q\_quit       & Q\_quit       & Q\_quit  \\
+Q\_return\_5     & Q\_quit          & Q\_quit          & Q\_quit          & Q\_quit          & Q\_quit       & Q\_quit       & Q\_quit  \\
+Q\_return\_6     & Q\_quit          & Q\_quit          & Q\_quit          & Q\_quit          & Q\_quit       & Q\_quit       & Q\_quit 
+\end{longtable}
+\end{landscape}
+
+\newpage
+
+\begin{landscape}
+\begin{longtable}[c]{llllllll}
+\hline
+currentState & ONE & TWO & FIVE & EX\_BASIC & EX\_WAX & GET\_CHANGE & NONE \\ \hline
+\endfirsthead
+%
+\multicolumn{8}{c}%
+{{\bfseries Table \thetable\ continued from previous page}} \\
+\hline
+currentState & ONE & TWO & FIVE & EX\_BASIC & EX\_WAX & GET\_CHANGE & NONE \\ \hline
+\endhead
+%
+Q\_return\_7  & Q\_quit      & Q\_quit      & Q\_quit      & Q\_quit   & Q\_quit & Q\_quit     & Q\_quit \\
+Q\_return\_8  & Q\_quit      & Q\_quit      & Q\_quit      & Q\_quit   & Q\_quit & Q\_quit     & Q\_quit \\
+Q\_return\_9  & Q\_quit      & Q\_quit      & Q\_quit      & Q\_quit   & Q\_quit & Q\_quit     & Q\_quit \\
+Q\_return\_10 & Q\_quit      & Q\_quit      & Q\_quit      & Q\_quit   & Q\_quit & Q\_quit     & Q\_quit \\
+Q\_return\_11 & Q\_quit      & Q\_quit      & Q\_quit      & Q\_quit   & Q\_quit & Q\_quit     & Q\_quit \\
+Q\_return\_12 & Q\_quit      & Q\_quit      & Q\_quit      & Q\_quit   & Q\_quit & Q\_quit     & Q\_quit \\
+Q\_return\_13 & Q\_quit      & Q\_quit      & Q\_quit      & Q\_quit   & Q\_quit & Q\_quit     & Q\_quit \\
+Q\_return\_14 & Q\_quit      & Q\_quit      & Q\_quit      & Q\_quit   & Q\_quit & Q\_quit     & Q\_quit \\
+Q\_return\_15 & Q\_quit      & Q\_quit      & Q\_quit      & Q\_quit   & Q\_quit & Q\_quit     & Q\_quit \\
+Q\_return\_16 & Q\_quit      & Q\_quit      & Q\_quit      & Q\_quit   & Q\_quit & Q\_quit     & Q\_quit \\
+Q\_return\_17 & Q\_quit      & Q\_quit      & Q\_quit      & Q\_quit   & Q\_quit & Q\_quit     & Q\_quit \\
+Q\_return\_18 & Q\_quit      & Q\_quit      & Q\_quit      & Q\_quit   & Q\_quit & Q\_quit     & Q\_quit \\
+Q\_return\_19 & Q\_quit      & Q\_quit      & Q\_quit      & Q\_quit   & Q\_quit & Q\_quit     & Q\_quit \\
+Q\_return\_20 & Q\_quit      & Q\_quit      & Q\_quit      & Q\_quit   & Q\_quit & Q\_quit     & Q\_quit \\
+Q\_basic      & Q\_return\_1 & Q\_return\_2 & Q\_return\_5 & Q\_quit   & Q\_quit & Q\_quit     & Q\_quit \\
+Q\_basic\_wax & Q\_return\_1 & Q\_return\_2 & Q\_return\_5 & Q\_quit   & Q\_quit & Q\_quit     & Q\_quit \\
+Q\_change     & Q\_return\_1 & Q\_return\_2 & Q\_return\_5 & Q0        & Q0      & Q0          & Q0      \\
+Q\_quit       & Q\_return\_1 & Q\_return\_2 & Q\_return\_5 & Q\_quit   & Q\_quit & Q\_quit     & Q\_quit
+\end{longtable}
+\end{landscape}
+\end{section}
 
 \end{document}
