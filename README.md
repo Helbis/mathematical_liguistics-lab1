@@ -14,7 +14,7 @@ Possible alphabet symbols:
 Possible states symbols:
 
 | State |
-|+++|
+|---|
 | Q0 |
 | Q1 |
 | Q2 |

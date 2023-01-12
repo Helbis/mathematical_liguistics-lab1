@@ -10,6 +10,8 @@ run:
 
 clean:
 	rm ./output
+	rm *.aux *.log
 
 docs:
 	pdflatex report.tex
+	open report.pdf

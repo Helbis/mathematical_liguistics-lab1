@@ -1,0 +1,54 @@
+\documentclass[10pt]{article}
+
+% Packages
+\usepackage{lscape}
+\usepackage{longtable}
+\usepackage[table,xcdraw]{xcolor}
+
+% Meta data
+\title{DFA car wash automaton}
+\author{Filip Helbig}
+\date{\today}
+
+\begin{document}
+
+\maketitle{}
+\newpage
+
+\begin{landscape}
+\begin{longtable}[c]{llllllll}
+\hline
+currentState & ONE & TWO & FIVE & EX\_BASIC & EX\_WAX & GET\_CHANGE & NONE \\ \hline
+\endfirsthead
+%
+\multicolumn{8}{c}%
+{{\bfseries Table \thetable\ continued from previous page}} \\
+\hline
+currentState & ONE & TWO & FIVE & EX\_BASIC & EX\_WAX & GET\_CHANGE & NONE \\ \hline
+\endhead
+%
+Q0   & Q1               & Q2               & Q5               & Q0               & Q0            & Q0            & Q0   \\ \hline
+Q1   & Q2               & Q3               & Q6               & Q1               & Q1            & Q\_return\_1  & Q1   \\ \hline
+Q2   & Q3               & Q4               & Q7               & Q2               & Q2            & Q\_return\_2  & Q2   \\ \hline
+Q3   & Q4               & Q5               & Q8               & Q3               & Q3            & Q\_return\_3  & Q3   \\ \hline
+Q4   & Q5               & Q6               & Q9               & Q4               & Q4            & Q\_return\_4  & Q4   \\ \hline
+Q5   & Q6               & Q7               & Q10              & Q5               & Q5            & Q\_return\_5  & Q5   \\ \hline
+Q6   & Q7               & Q8               & Q11              & Q6               & Q6            & Q\_return\_6  & Q6   \\ \hline
+Q7   & Q8               & Q9               & Q12              & Q7               & Q7            & Q\_return\_7  & Q7   \\ \hline
+Q8   & Q9               & Q10              & Q13              & Q8               & Q8            & Q\_return\_8  & Q8   \\ \hline
+Q9   & Q10              & Q11              & Q14              & Q9               & Q9            & Q\_return\_9  & Q9   \\ \hline
+Q10  & Q11              & Q12              & Q15              & Q10              & Q10           & Q\_return\_10 & Q10  \\ \hline
+Q11  & Q12              & Q13              & Q16              & Q11              & Q11           & Q\_return\_11 & Q11  \\ \hline
+Q12  & Q13              & Q14              & Q17              & Q12              & Q12           & Q\_return\_12 & Q12  \\ \hline
+Q13  & Q14              & Q15              & Q18              & Q13              & Q13           & Q\_return\_13 & Q13  \\ \hline
+Q14  & Q15              & Q16              & Q19              & Q14              & Q14           & Q\_return\_14 & Q14  \\ \hline
+Q15  & Q16              & Q17              & Q20              & Q\_basic         & Q15           & Q\_return\_15 & Q15  \\ \hline
+Q16  & Q17              & Q18              & Q\_ret\_1\_b\_20 & Q\_basic\_ret\_1 & Q16           & Q\_return\_16 & Q16  \\ \hline
+Q17  & Q18              & Q19              & Q\_ret\_2\_b\_20 & Q\_basic\_ret\_2 & Q17           & Q\_return\_17 & Q17  \\ \hline
+Q18  & Q19              & Q20              & Q\_ret\_3\_b\_20 & Q\_basic\_ret\_3 & Q18           & Q\_return\_18 & Q18  \\ \hline
+Q19  & Q20              & Q\_ret\_1\_b\_20 & Q\_ret\_4\_b\_20 & Q\_basic\_ret\_4 & Q19           & Q\_return\_19 & Q19  \\ \hline
+Q20  & Q\_ret\_1\_b\_20 & Q\_ret\_2\_b\_20 & Q\_ret\_5\_b\_20 & Q\_basic\_ret\_5 & Q\_basic\_wax & Q\_return\_20 & Q20  \\ \hline
+\end{longtable}
+\end{landscape}
+
+\end{document}
