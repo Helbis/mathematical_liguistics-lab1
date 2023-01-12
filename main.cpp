@@ -1,3 +1,9 @@
+/*
+AUTHOR: Filip Helbig
+GITHUB: https://github.com/Helbis/mathematical_liguistics-lab1
+*/
+
+
 #include <cstddef>
 #include <cstdlib>
 #include <iostream>
