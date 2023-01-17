@@ -14,6 +14,7 @@
 \begin{document}
 
 \maketitle{}
+\tableofcontents
 \newpage
 
 \begin{section}{State Machine Definition}
@@ -56,9 +57,18 @@ $$
 q_0 = \lbrace Q\_0 \rbrace
 $$
 
-Accepting state:
+Accepting states:
 $$
-A = \lbrace Q\_quit \rbrace
+A = \lbrace
+Q\_quit
+Q\_basic\_ret\_1 \\
+Q\_basic\_ret\_2 \\
+Q\_basic\_ret\_3 \\
+Q\_basic\_ret\_4 \\
+Q\_basic\_ret\_5 \\
+Q\_basic \\
+Q\_basic\_wax \\
+ \rbrace
 $$
 
 \end{section}
@@ -132,11 +142,11 @@ Q\_ret\_2\_b\_20 & Q\_ret\_1\_b\_20 & Q\_ret\_2\_b\_20 & Q\_ret\_5\_b\_20 & Q\_b
 Q\_ret\_3\_b\_20 & Q\_ret\_1\_b\_20 & Q\_ret\_2\_b\_20 & Q\_ret\_5\_b\_20 & Q\_basic\_ret\_3 & Q\_basic\_wax & Q\_return\_20 & Q20      \\
 Q\_ret\_4\_b\_20 & Q\_ret\_1\_b\_20 & Q\_ret\_2\_b\_20 & Q\_ret\_5\_b\_20 & Q\_basic\_ret\_4 & Q\_basic\_wax & Q\_return\_20 & Q20      \\
 Q\_ret\_5\_b\_20 & Q\_ret\_1\_b\_20 & Q\_ret\_2\_b\_20 & Q\_ret\_5\_b\_20 & Q\_basic\_ret\_5 & Q\_basic\_wax & Q\_return\_20 & Q20      \\
-Q\_basic\_ret\_1 & Q\_basic\_ret\_1 & Q\_basic\_ret\_2 & Q\_basic\_ret\_5 & Q\_basic         & Q15           & Q\_return\_15 & Q\_basic \\
-Q\_basic\_ret\_2 & Q\_basic\_ret\_1 & Q\_basic\_ret\_2 & Q\_basic\_ret\_5 & Q\_basic         & Q15           & Q\_return\_15 & Q\_basic \\
-Q\_basic\_ret\_3 & Q\_basic\_ret\_1 & Q\_basic\_ret\_2 & Q\_basic\_ret\_5 & Q\_basic         & Q15           & Q\_return\_15 & Q\_basic \\
-Q\_basic\_ret\_4 & Q\_basic\_ret\_1 & Q\_basic\_ret\_2 & Q\_basic\_ret\_5 & Q\_basic         & Q15           & Q\_return\_15 & Q\_basic \\
-Q\_basic\_ret\_5 & Q\_basic\_ret\_1 & Q\_basic\_ret\_2 & Q\_basic\_ret\_5 & Q\_basic         & Q15           & Q\_return\_15 & Q\_basic \\
+Q\_basic\_ret\_1 & Q\_quit & Q\_quit & Q\_quit & Q\_quit & Q\_quit           & Q\_quit & Q\_quit \\
+Q\_basic\_ret\_2 & Q\_quit & Q\_quit & Q\_quit & Q\_quit & Q\_quit           & Q\_quit & Q\_quit \\
+Q\_basic\_ret\_3 & Q\_quit & Q\_quit & Q\_quit & Q\_quit & Q\_quit           & Q\_quit & Q\_quit \\
+Q\_basic\_ret\_4 & Q\_quit & Q\_quit & Q\_quit & Q\_quit & Q\_quit           & Q\_quit & Q\_quit \\
+Q\_basic\_ret\_5 & Q\_quit & Q\_quit & Q\_quit & Q\_quit & Q\_quit           & Q\_quit & Q\_quit \\
 Q\_return\_1     & Q\_quit          & Q\_quit          & Q\_quit          & Q\_quit          & Q\_quit       & Q\_quit       & Q\_quit  \\
 Q\_return\_2     & Q\_quit          & Q\_quit          & Q\_quit          & Q\_quit          & Q\_quit       & Q\_quit       & Q\_quit  \\
 Q\_return\_3     & Q\_quit          & Q\_quit          & Q\_quit          & Q\_quit          & Q\_quit       & Q\_quit       & Q\_quit  \\
@@ -177,9 +187,101 @@ Q\_return\_20 & Q\_quit      & Q\_quit      & Q\_quit      & Q\_quit   & Q\_quit
 Q\_basic      & Q\_return\_1 & Q\_return\_2 & Q\_return\_5 & Q\_quit   & Q\_quit & Q\_quit     & Q\_quit \\
 Q\_basic\_wax & Q\_return\_1 & Q\_return\_2 & Q\_return\_5 & Q\_quit   & Q\_quit & Q\_quit     & Q\_quit \\
 Q\_change     & Q\_return\_1 & Q\_return\_2 & Q\_return\_5 & Q0        & Q0      & Q0          & Q0      \\
-Q\_quit       & Q\_return\_1 & Q\_return\_2 & Q\_return\_5 & Q\_quit   & Q\_quit & Q\_quit     & Q\_quit
+Q\_quit       & Q\_quit 	 & Q\_quit & Q\_quit & Q\_quit   & Q\_quit & Q\_quit     & Q\_quit
 \end{longtable}
 \end{landscape}
 \end{section}
+
+
+\section{Program running}
+
+In order to make and run the program,
+please type of paste following:
+
+\begin{verbatim}
+make
+\end{verbatim}
+
+\begin{verbatim}
+make run
+\end{verbatim}
+
+Entering and exiting from machine:
+\begin{verbatim}
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Welcome to the car wash!
+Please use following letters to use the machine:
+1 - to input 1 euro
+2 - to input 2 euro
+5 - to input 5 euro
+b - to get basic wash
+w - to get wash and waxing
+c - to get the change
+q - to quit
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Current state:	Q0
+Current sum:  	0
+input: q
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Thank you for using our car wash
+this is your history of states:
+Q0, 
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\end{verbatim}
+
+Using machine to get wash and waxing:
+\begin{verbatim}
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Welcome to the car wash!
+Please use following letters to use the machine:
+	1 - to input 1 euro
+	2 - to input 2 euro
+	5 - to input 5 euro
+	b - to get basic wash
+	w - to get wash and waxing
+	c - to get the change
+	q - to quit
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Current state:	Q0
+Current sum:  	0
+input: 1
+Current state:	Q1
+Current sum:  	1
+input: 2
+Current state:	Q3
+Current sum:  	3
+input: 5
+Current state:	Q8
+Current sum:  	8
+input: 5
+Current state:	Q13
+Current sum:  	13
+input: 2
+Current state:	Q15
+Current sum:  	15
+input: 2
+Current state:	Q17
+Current sum:  	17
+input: 2
+Current state:	Q19
+Current sum:  	19
+input: 1
+Current state:	Q20
+Current sum:  	20
+input: w
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Thank you for using our car wash
+this is your history of states:
+Q0, 
+Q1, 
+Q3, 
+Q8, 
+Q13, 
+Q15, 
+Q17, 
+Q19, 
+Q20, 
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\end{verbatim}
 
 \end{document}
